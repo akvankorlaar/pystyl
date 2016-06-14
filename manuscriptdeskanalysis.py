@@ -82,20 +82,20 @@ try:
             dms = bootstrapped_distance_matrices(corpus, n_iter=100, random_prop=0.20, metric='manhattan')
             trees = [hierarchical_clustering(dm, linkage='ward') for dm in dms]
             bct = bootstrap_consensus_tree(corpus=corpus, trees=trees, consensus_level=0.5)
-            bct_dendrogram(corpus=corpus, tree=bct, fontsize=8, color_leafs=False,mode='c', outputfile=full_outputpath, save=True)
+            bct_dendrogram(corpus=corpus, tree=bct, fontsize=8, color_leafs=False,mode='c', outputfile=full_outputpath, save=True, return_svg=True)
         elif visualization == 'pcascatterplot':
             pca_coor, pca_loadings = pca(corpus)
-            scatterplot(corpus, coor=pca_coor, loadings=pca_loadings, plot_type='static', outputfile=full_outputpath, save=True)
+            scatterplot(corpus, coor=pca_coor, loadings=pca_loadings, plot_type='static', outputfile=full_outputpath, save=True, return_svg=True)
         elif visualization == 'tnsescatterplot':
             tsne_coor = tsne(corpus, nb_dimensions=2)
-            scatterplot(corpus, coor=tsne_coor, nb_clusters=0, plot_type='static', outputfile=full_outputpath, save=True)
+            scatterplot(corpus, coor=tsne_coor, nb_clusters=0, plot_type='static', outputfile=full_outputpath, save=True, return_svg=True)
         elif visualization == 'distancematrix':
             dm = distance_matrix(corpus, metric='minmax')
-            clustermap(corpus, distance_matrix=dm, fontsize=8, color_leafs=True, outputfile=full_outputpath, save=True)
+            clustermap(corpus, distance_matrix=dm, fontsize=8, color_leafs=True, outputfile=full_outputpath, save=True, return_svg=True)
         elif visualization == 'neighbourclustering':
             dm = distance_matrix(corpus, metric='minmax')
             vnc_tree = vnc_clustering(dm, linkage='ward')
-            scipy_dendrogram(corpus, tree=vnc_tree, fontsize=8, color_leafs=False, outputfile=full_outputpath, save=True)
+            scipy_dendrogram(corpus, tree=vnc_tree, fontsize=8, color_leafs=False, outputfile=full_outputpath, save=True, return_svg=True)
         return
 
     constructAndSaveVisualization(visualization1, full_outputpath1)
